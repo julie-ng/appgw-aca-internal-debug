@@ -19,6 +19,17 @@ resource "azurerm_subnet" "aca_apps" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = local.aca_apps_address_space
+
+  delegation {
+    name = "delegation"
+
+    service_delegation {
+      name = "Microsoft.App/environments"
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/join/action"
+      ]
+    }
+  }
 }
 
 resource "azurerm_subnet" "aca_control_plane" {
@@ -26,6 +37,17 @@ resource "azurerm_subnet" "aca_control_plane" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = local.aca_control_plane_address_space
+
+  delegation {
+    name = "delegation"
+
+    service_delegation {
+      name = "Microsoft.App/environments"
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/join/action"
+      ]
+    }
+  }
 }
 
 
