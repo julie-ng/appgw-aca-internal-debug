@@ -29,26 +29,10 @@ resource "azurerm_resource_group" "rg" {
   tags     = local.default_tags
 }
 
-
-
 resource "azurerm_log_analytics_workspace" "workspace" {
   name                = "${local.base_name}-la-workspace"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   sku                 = "PerGB2018"
   retention_in_days   = 30
-}
-
-# resource "azurerm_container_app_environment" "env" {
-#   name                       = "${local.base_name}-environment"
-#   location                   = azurerm_resource_group.rg.location
-#   resource_group_name        = azurerm_resource_group.rg.name
-#   log_analytics_workspace_id = azurerm_log_analytics_workspace.workspace.id
-
-#   infrastructure_subnet_id = azurerm_subnet.aca.id
-# }
-
-
-output "suffix" {
-  value = random_string.suffix.result
 }
