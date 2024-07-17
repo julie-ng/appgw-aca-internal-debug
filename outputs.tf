@@ -6,6 +6,15 @@ output "aca_environment" {
   }
 }
 
+output "hello_welt" {
+  value = {
+    name                         = azurerm_container_app.hello.name
+    workload_profile_name        = azurerm_container_app.hello.workload_profile_name
+    latest_revision_name         = azurerm_container_app.hello.latest_revision_name
+    container_app_environment_id = azurerm_container_app.hello.container_app_environment_id
+  }
+}
+
 output "private_dns_zone" {
   value = {
     name                  = azurerm_private_dns_zone.aca_env.name
