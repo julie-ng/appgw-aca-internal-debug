@@ -29,7 +29,6 @@ data "azurerm_key_vault" "jngdemos" {
   resource_group_name = "demos-shared-rg"
 }
 
-
 resource "azurerm_role_assignment" "appgw_on_keyvault" {
   scope                = data.azurerm_key_vault.jngdemos.id
   role_definition_name = "Key Vault Certificate User"
