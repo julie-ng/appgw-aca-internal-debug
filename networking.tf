@@ -84,21 +84,3 @@ resource "azurerm_private_dns_zone_virtual_network_link" "aca_env" {
   private_dns_zone_name = azurerm_private_dns_zone.aca_env.name
   virtual_network_id    = azurerm_virtual_network.vnet.id
 }
-
-
-# ===========
-# App Gateway
-# ===========
-
-# ===== Static IP =====
-
-resource "azurerm_public_ip" "app_gw" {
-  name                = "app-gateway-${local.suffix}-pip"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
-  sku                 = "Standard"
-  allocation_method   = "Static"
-  tags                = local.default_tags
-}
-
-
