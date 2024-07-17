@@ -1,3 +1,7 @@
+# ====================
+#  Virtual Networking
+# ====================
+
 resource "azurerm_virtual_network" "vnet" {
   name                = "${local.base_name}-${local.suffix}-vnet"
   location            = azurerm_resource_group.rg.location
